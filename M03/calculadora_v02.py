@@ -9,3 +9,9 @@ print('3. Multiplicar')
 print('4. dividir')
 
 resposta= input('Escolha uma opção:')
+
+def soma(x,y):
+    A=x+y
+    print(f'Soma {A}')
+
+soma(10,5)
