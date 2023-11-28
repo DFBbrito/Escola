@@ -2,16 +2,38 @@
 """
 Calculadora: apresentar um menu com 4 opçoes
 """
+def soma(n1,n2):
+    resultado=n1+n2
+    print(f'Soma: {resultado}')
 
-print('1. Soma')
-print('2. Subtrair')
-print('3. Multiplicar')
-print('4. dividir')
+def subtraçao(n1,n2):
+    resultado=n1-n2
+    print(f'Subtraçao: {resultado}')
 
-resposta= input('Escolha uma opção:')
+def multiplicar(n1,n2):
+    resultado=n1*n2
+    print(f'Multiplicação: {resultado}')
 
-def soma(x,y):
-    A=x+y
-    print(f'Soma {A}')
+def divisao(n1,n2):
+    resultado=n1/n2
+    print(f'Divisão: {resultado}')
 
-soma(10,5)
+def menu():
+    print('1.somar \n2.subtrair \n3.multiplicar \n4.dividir')
+    op=input('escolha uma opção: ')
+    x=float(input('Um valor: '))
+    y=float(input('Outro valor: '))
+    if op=='1':
+        soma(x,y)
+    elif op=='2':
+        subtraçao(x,y)
+    elif op=='3':
+        multiplicar(x,y)
+    elif op=='4':
+        divisao(x,y)
+
+def main():
+    menu()
+
+if __name__ == '__main__':
+    main()
