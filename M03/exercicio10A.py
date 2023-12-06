@@ -15,10 +15,20 @@ def Codifica(texto):
             codificado += codigo[posicao]
         else:
             codificado+=letra
+    print(codificado)
 
 def Descodifica(texto):
     """Recebe um texto codificado e descodifica"""
-    pass## mesmo codigo alfabeto muda
-
+    global alfabeto, codigo
+    descodificado=""
+    texto=texto.lower()
+    for letra in texto:
+        if letra in codigo:
+            posicao = codigo.index(letra)
+            descodificado += alfabeto[posicao]
+        else:
+            descodificado+=letra
+    print(descodificado)
 
 print(Codifica("Bebe"))
+print(Descodifica("Bebe"))
