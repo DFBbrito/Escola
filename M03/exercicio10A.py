@@ -1,5 +1,5 @@
 """
-cesar
+cifra de cesar
 """
 alfabeto="abcdefghijklmnopqrstuvwxyz"
 codigo="bcdefghijklmnopqrstuvwxyza"
@@ -11,11 +11,11 @@ def Codifica(texto):
     texto=texto.lower()
     for letra in texto:
         if letra in alfabeto:
-            posicao = alfabeto.index(letra)
-            codificado += codigo[posicao]
+            posicao=alfabeto.index(letra)
+            codificado+=codigo[posicao]
         else:
             codificado+=letra
-    print(codificado)
+    return codificado
 
 def Descodifica(texto):
     """Recebe um texto codificado e descodifica"""
@@ -24,11 +24,11 @@ def Descodifica(texto):
     texto=texto.lower()
     for letra in texto:
         if letra in codigo:
-            posicao = codigo.index(letra)
-            descodificado += alfabeto[posicao]
+            posicao=codigo.index(letra)
+            descodificado+=alfabeto[posicao]
         else:
             descodificado+=letra
-    print(descodificado)
+    return descodificado
 
 print(Codifica("Bebe"))
-print(Descodifica("Bebe"))
+print(Descodifica("cfcf"))
