@@ -23,13 +23,13 @@ def menu():
     opçao=input(':')
     return opçao
 
-def Entrada(mesas):
+def Entrada(mesas,lotaçao):
     if NR_Mesas_Livres(mesas)==0:
         print("O restaurante está cheio!")
         return
     while True:
         #perguntar qual a mesa
-        nr_mesas=int(input("Qual a mesa [1-6]?"))-1
+        nr_mesas=int(input(f"Qual a mesa [1-{len(mesas)}]?"))-1
         #verificar se nr da mesa é válido
         if nr_mesas<0 or nr_mesas>len(mesas)-1:
             print("Nº da mesa não é valido")
@@ -42,7 +42,7 @@ def Entrada(mesas):
     #perguntar quantas pessoas
     while True:
         nr_pessoas=int(input("Quantas pessoas:"))
-        if nr_pessoas<=0 or nr_pessoas>4:
+        if nr_pessoas<=0 or nr_pessoas>lotaçao[nr_mesas]:
             print('Nº de pessoas não é válido')
         else:
             break
@@ -92,14 +92,18 @@ def NR_Mesas_Livres(mesas):
         if mesa==0:
             contar+=1
     return contar
+
 def main():
-    NR_MESAS=6
+    NR_MESAS=int(input("Quantas mesas têm o restaurante:"))
     mesas=np.zeros(NR_MESAS,'i')
+    lotaçao=np.zeros(NR_MESAS,'i')
+    for i in range(len(lotaçao)):
+        lotaçao[i]=int(input(f'Quantos lugares tem o restaurante:'))
     #menu
     while True:
         op=menu()
         if op=="1":
-            Entrada(mesas)
+            Entrada(mesas,lotaçao)
         elif op=="2":
             Saida(mesas)
         elif op=="3":
