@@ -9,4 +9,4 @@ while lugares!=0:
     else:
         lugares-=n_alunos
         número_turmas+=1
-    
+    print(f'{número_turmas}{lugares}')
