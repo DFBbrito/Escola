@@ -9,7 +9,6 @@ for i in range(10):
     valor=float(input(f"Digite o {i + 1} valor: "))
     valores[i]=valor
 
-
 inver=np.empty(10, dtype='float')
 indice2=len(valores) - 1
 
