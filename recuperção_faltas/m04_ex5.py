@@ -28,3 +28,6 @@ for x in numeros:
         print(f"O nº {x} repete-se {contar} vezes.")
         repetidos[p_repetidos] = x
         p_repetidos += 1
+
+#ja esta
+        

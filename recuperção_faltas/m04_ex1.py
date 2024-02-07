@@ -15,4 +15,4 @@ for i in range(10):
 for valor in valores:
     print(valor)
 
-   
+   # ja esta 

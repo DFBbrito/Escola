@@ -21,3 +21,5 @@ for valor in numeros:
         superiores_media += 1
 
 print(f"{superiores_media} valores são superiores à média.")
+
+#ja esta

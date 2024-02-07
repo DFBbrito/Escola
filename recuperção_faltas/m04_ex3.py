@@ -13,3 +13,5 @@ for i in range(MAX_ITEMS):
  
 media = soma / MAX_ITEMS
 print(f"A média dos valores introduzidos é {media}")
+
+#ja esta
