@@ -1,0 +1,6 @@
+array                                vs               Listas
+Mesmo tipo de dados                                   varios tipos dados
+tamanho fixo                                          tamanho dinamico
+ocupa espaço contido na memoria                       ocupa espaço que existir na memoria
+indexado                                              indexado
+maisa rapido                                          menos rapido

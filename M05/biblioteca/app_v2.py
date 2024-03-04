@@ -1,4 +1,3 @@
-
 # Função que permite ao utilizador adicionar um livro
 # O livro novo estará sempre disponivel
 # Tenha atenção para não repetir o id do livro
@@ -8,7 +7,7 @@ def adicionar_livro(livros):
         bi=livros[len(livros)-1]["id_livro"]+1
     else:
         bi=1
-    novo={'id_livro':bi,'titulo':titulo,'Disponivel':True,'nome_leitor':''}
+    novo={'id_livro':bi,'titulo':titulo,'disponivel':True,'nome_leitor':''}
     livros.append(novo)
      
 # Função para mostrar os livros
@@ -17,22 +16,52 @@ def listar_livros(livros):
     print("1.listar todos\n2.listar disponiveis\n3.listar indisponivel")
     op=input(":")
     for livro in livros:
-        if op=="1" or (op=="2"and livro["diponivel"]==True) or (op=="3" and livro["diponivel"]==False):
+        if op=="1" or (op=="2"and livro["disponivel"]==True) or (op=="3" and livro["disponivel"]==False):
             for chave,valor in livro.items():
                 print(f"{chave}:{valor}")
             print("-"*20)
+
 # Função que muda o estado do livro e regista o nome do leitor
 def emprestar_livro(livros):
-    pass
+    #Ler o id_livro a emprestar
+    id_livro=int(input("Qual o id do livro a emprestar?"))
+    #procurar o lirvo
+    for livro in livros:
+        #se existir ler o nome do leitor e alterar o estado
+        if id_livro==livro["id_livro"]:
+            if livro["disponivel"]==False:
+                print("Livro está emprestado")
+                return
+            nome=input("Qual o leitor:")
+            livro["nome_leitor"]=nome
+            livro["disponivel"]=False
+            print("Boas leituras")
+            return
+    #se não existir dar um erro!
+    print("Esse id de livro não existe")
 
 #Função que torna o livro disponível e apaga o nome do leitor
 def devolver_livro(livros):
-    pass
+    #Ler o id_livro a devolver
+    id_livro=int(input("Qual o id do livro a devolver?"))
+    #procurar o lirvo
+    for livro in livros:
+        #se existir ler o nome do leitor e alterar o estado
+        if id_livro==livro["id_livro"]:
+            if livro["disponivel"]==True:
+                print("Livro não está emprestado")
+                return
+            livro["nome_leitor"]=""
+            livro["disponivel"]=True
+            print("Obrigado, Volte sempre.")
+            return
+    #se não existir dar um erro!
+    print("Esse id de livro não existe")
 
 #Função que apresenta as opções ao utilizador e devolve a sua escolha
 def menu():
     while True:
-        print("1. Adicionar\n2.Listar\n3.Emprestar\n4.Devolver\n5.Sair")
+        print("1.Adicionar\n2.Listar\n3.Emprestar\n4.Devolver\n5.Sair")
         op = int(input(":"))
         if op <1 or op >5:
             print("Essa opção não é válida")
