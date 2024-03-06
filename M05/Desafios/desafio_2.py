@@ -16,4 +16,7 @@ while len(super_heroes)>0:
     combate=[heroi,vilao]
     vencedor=random.choice(combate)
     print(f"Vencedor foi {vencedor}")
+    x=input("enter - proximo comabte")
+    print("x"*12)
+
 
