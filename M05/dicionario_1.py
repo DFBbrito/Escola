@@ -3,7 +3,6 @@ paises={'Portugal':"Lisboa",'France':"Paris",'Inglaterra':"Londres",'Espanha':"M
 for chave,valor in paises.items():
     print(f"A capital de {chave} é {valor}!")
 
-
 pais=input("diga um Pais: ")
 capital=input("diga uma capital: ")
 
