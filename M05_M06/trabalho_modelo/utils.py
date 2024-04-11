@@ -5,6 +5,13 @@ def le_numero(titulo):
         temp=input(titulo)
     return int(temp)
 
+#funçao para ler um texto com um numero minimo de letras
+def le_texto(titulo,minimo):
+    temp=input(titulo)
+    while len(temp)<minimo:
+        temp=input(titulo)
+    return temp
+
 #funçao para mostrar um menu
 #mostrar_menu("Menu Principal",["Livros","Leitores",...])
 def mostrar_menu(titulo,opçoes):
