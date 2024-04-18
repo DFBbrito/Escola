@@ -5,8 +5,47 @@ import utils
 
 leitores=[]
 
-exemplo_livros=[
-    {"id":1,"nome":"Livro 1","autor":"Autor 1","ano":2000,"editora":"editora 1","estado":"disponivel","leitor":None,"nr_emprestimos":0},
-    {"id":2,"nome":"Livro 2","autor":"Autor 2","ano":2000,"editora":"editora 2","estado":"disponivel","leitor":None,"nr_emprestimos":0},
-    {"id":3,"nome":"Livro 3","autor":"Autor 3","ano":2000,"editora":"editora 3","estado":"disponivel","leitor":None,"nr_emprestimos":0}
+exemplo_leitores=[
+    {"id":1,"nome":"joaquim","email":"joaquim@gmail.com"},
+    {"id":2,"nome":"maria","email":"maria@joaquim@gmail.com"}
 ]
+
+def configurar():
+    """Adiciona leitores de exemplo"""
+    leitores.extend(exemplo_leitores)
+
+def menu_leitores():
+    """Menu de leitores"""
+    while True:
+        utils.mostrar_menu("Menu de Leitores",["Adicionar","Listar","Editar","Apagar","Voltar"])
+        op=utils.le_numero("Opção:")
+        if op==5:
+            break
+        if op==1:
+            adicionar()
+        if op==2:
+            listar()
+        if op==3:
+            pass
+        if op==4:
+            pass
+
+def adicionar():
+    nome=utils.le_texto("Nome:",3)
+    email=utils.le_email("Email:")
+    #adicionar à lista 
+    id=1
+    if len(leitores)>0:
+        id=leitores[len(leitores)-1]["id"]+1
+    novo={
+        "id":id,
+        "nome":nome,
+        "email":email
+    }
+    leitores.append(novo)
+    print(f"Leitor adicionado com sucesso. Tem {len(leitores)} leitores.")
+
+def listar():
+    print("Lista de leitores")
+    for leitor in leitores:
+        print(f"Id: {leitor["id"]}\tNome:{leitor["Nome"]}\tEmail:{leitor["email"]}")

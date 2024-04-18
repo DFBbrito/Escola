@@ -6,11 +6,24 @@ def le_numero(titulo):
     return int(temp)
 
 #funçao para ler um texto com um numero minimo de letras
-def le_texto(titulo,minimo):
+def le_texto(titulo,minimo=None):
     temp=input(titulo)
-    while len(temp)<minimo:
+    while minimo is not None and len(temp)<minimo:
         temp=input(titulo)
     return temp
+
+#funçao lê, valida e devolve um endereço do email
+def le_email(titulo):
+    email=le_texto(titulo)
+    while True:
+        email=le_texto(titulo)
+        tem_arroba=False
+        for c in email:
+            if c=="@":
+                tem_arroba=True
+            if tem_arroba:
+                if c==".":
+                    return email
 
 #funçao para mostrar um menu
 #mostrar_menu("Menu Principal",["Livros","Leitores",...])
