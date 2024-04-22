@@ -112,7 +112,7 @@ def apagar():
     if livro["estado"]!="disponivel":
         print("só pode remover livros cujo estado é disponivel")
         return
-    op=utils.le_texto(f"pretende remover o livro {livro["Nome"]}?")
+    op=utils.le_texto(f"pretende remover o livro {livro['Nome']}?")
     if op in ["s",'S','sim','SIM','yes',"Sim",'y']:
         livros.remove(livro)
         print(f"livro removido com sucesso. Tem {len(livros)} livros")
