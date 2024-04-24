@@ -12,7 +12,11 @@ def vender_camiao(matricula,cliente_nome):
     return ("Camiao nao encontrado no stand")
 
 def listar_vendas():
-    return vendas
+    visualizaçao=[]
+    for venda in vendas:
+        detalhes=(f"Camiao {venda['matricula']} vendido ao {venda['cliente']}")
+        visualizaçao.append(detalhes)
+    return visualizaçao
 
 def menu_vendas():
     while True:
@@ -22,12 +26,15 @@ def menu_vendas():
         print("3. Voltar ao Menu Principal")
         op=input("Escolha uma opção: ")
         if op=="1":
-            matricula=input("Insira a placa do camião: ")
+            matricula=input("Insira a matricula do camião: ")
             cliente_nome=input("Insira o nome do cliente que quer comprar o camião: ")
             print(vender_camiao(matricula,cliente_nome))
         elif op=="2":
-            print("Vendas feitas:",listar_vendas())
+            print("Camioes vendidos")
         elif op=="3":
-            break
+            print("Camioes vendidos:")
+            for detalhes in listar_vendas():
+                print("-"*15)
+                print(detalhes)
         else:
             print("Opção inválida, tente novamente.")

@@ -1,7 +1,6 @@
 #Daniel Brito
 clientes=[]
 
-
 def adicionar_cliente(nome,contacto):
     cliente={"nome":nome,"contacto":contacto}
     clientes.append(cliente)
@@ -27,7 +26,11 @@ def editar_cliente(nome):
     return ("Cliente não encontrado.")
 
 def listar_clientes():
-    return clientes
+    visualizaçao=[]
+    for cliente in clientes:
+        detalhes=(f"Nome: {cliente['nome']}\nContacto: {cliente['contacto']}")
+        visualizaçao.append(detalhes)
+    return visualizaçao
 
 def menu_clientes():
     while True:
@@ -51,7 +54,10 @@ def menu_clientes():
             novo_contacto=input("Novo contacto (deixe vazio para não alterar): ")
             print(editar_cliente(nome,novo_nome,novo_contacto))
         elif op=="4":
-            print("Clientes:",listar_clientes())
+            print("Clientes:")
+            for detalhes in listar_clientes():
+                print("-"*15)
+                print(detalhes)
         elif op=="5":
             break
         else:

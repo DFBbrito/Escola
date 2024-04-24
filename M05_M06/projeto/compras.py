@@ -10,7 +10,11 @@ def comprar_camiao(matricula,modelo,preço):
     return (f"Camiao {matricula} comprado e adicionado ao stand")
 
 def listar_compras():
-    return compras
+    visualizaçao=[]
+    for compra in compras:
+        detalhes=(f"Camiao {compra['modelo']} e matricula {compra['matricula']} comprado.")
+        visualizaçao.append(detalhes)
+    return visualizaçao
 
 def menu_compras():
     while True:
@@ -24,9 +28,12 @@ def menu_compras():
             modelo=input("Insira o modelo do camião: ")
             preco=float(input("Insira o preço do camião: "))
             print(comprar_camiao(matricula,modelo,preco))
-        elif op == "2":
-            print("Compras feitas:",listar_compras())
-        elif op == "3":
+        elif op=="2":
+            print("Camioes comprados:")
+            for detalhes in listar_compras():
+                print("-"*15)
+                print(detalhes)
+        elif op=="3":
             break
         else:
             print("Opção inválida, tente novamente.")

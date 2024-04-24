@@ -1,0 +1,3 @@
+->fazer validaçao 
+->nas vendas adicionar modelo e nas listagem tera de aparecer todos os vendidos e comprados mesmo que ja tenham sido vendidos ou comprados ou ate a remoçao de amobos e dos clientes , tera na listagem de aparecer todos os movimentos
+->verificar nome

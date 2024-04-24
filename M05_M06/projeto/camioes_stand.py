@@ -2,7 +2,7 @@
 camioes_stand=[
     {"matricula":"AA-12-43","modelo":"Volvo FH","preço":75000},
     {"matricula":"10-BB-45","modelo":"Scania R450","preço":85000},
-    {"matricula":"16-06-CC","modelo":"Mereceds Actro","preço":95000},
+    {"matricula":"16-06-CC","modelo":"Merceds Actro","preço":95000},
 ]
 
 def validar_placa(matricula):
@@ -23,9 +23,11 @@ def remover_camiao(matricula):
     return ("Camião não encontrado no stand.")
 
 def listar_camioes():
+    visualizaçao=[]
     for camiao in camioes_stand:
-        detalhes=(f"\nMatricula: {camiao['matricula']}\nModelo: {camiao['modelo']}\nPreço: {camiao['preço']}")
-    return detalhes,camioes_stand
+        detalhes=(f"Matricula: {camiao['matricula']}\nModelo: {camiao['modelo']}\nPreço: {camiao['preço']}")
+        visualizaçao.append(detalhes)
+    return visualizaçao
 
 def menu_camioes():
     while True:
@@ -44,7 +46,10 @@ def menu_camioes():
             matricula=input("Insira a matricula do camião a remover: ")
             print(remover_camiao(matricula))
         elif op=="3":
-            print("Camiões no stand:", listar_camioes())
+            print("Camioes no stand:")
+            for detalhes in listar_camioes():
+                print("-"*15)
+                print(detalhes)
         elif op=="4":
             break
         else:
