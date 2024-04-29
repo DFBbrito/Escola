@@ -20,21 +20,21 @@ def listar_vendas():
 
 def menu_vendas():
     while True:
-        print("--- Menu de Vendas ---")
+        print("\n--- Menu de Vendas ---")
         print("1. Vender Camião")
         print("2. Listar Vendas")
         print("3. Voltar ao Menu Principal")
         op=input("Escolha uma opção: ")
         if op=="1":
-            matricula=input("Insira a matricula do camião: ")
+            matricula=input("\nInsira a matricula do camião: ")
             cliente_nome=input("Insira o nome do cliente que quer comprar o camião: ")
             print(vender_camiao(matricula,cliente_nome))
         elif op=="2":
-            print("Camioes vendidos")
-        elif op=="3":
-            print("Camioes vendidos:")
+            print("\nCamioes vendidos")
             for detalhes in listar_vendas():
                 print("-"*15)
                 print(detalhes)
+        elif op=="3":
+            break
         else:
             print("Opção inválida, tente novamente.")

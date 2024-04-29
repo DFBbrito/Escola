@@ -18,18 +18,18 @@ def listar_compras():
 
 def menu_compras():
     while True:
-        print("--- Menu de Compras ---")
+        print("\n--- Menu de Compras ---")
         print("1. Comprar Camião")
         print("2. Listar Compras")
         print("3. Voltar ao Menu Principal")
         op=input("Escolha uma opção: ")
         if op=="1":
-            matricula=input("Insira a matricula do camião: ")
+            matricula=input("\nInsira a matricula do camião: ")
             modelo=input("Insira o modelo do camião: ")
             preco=float(input("Insira o preço do camião: "))
             print(comprar_camiao(matricula,modelo,preco))
         elif op=="2":
-            print("Camioes comprados:")
+            print("\nCamioes comprados:")
             for detalhes in listar_compras():
                 print("-"*15)
                 print(detalhes)

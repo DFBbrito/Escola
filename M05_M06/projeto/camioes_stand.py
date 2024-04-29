@@ -5,10 +5,6 @@ camioes_stand=[
     {"matricula":"16-06-CC","modelo":"Merceds Actro","preço":95000},
 ]
 
-def validar_placa(matricula):
-    if len(matricula)>0 and len(matricula)<=8:
-        return True
-    return False
 
 def adicionar_camiao(matricula,modelo,preço):
     camiao={"matricula":matricula,"modelo":modelo,"preço":preço}
@@ -31,22 +27,24 @@ def listar_camioes():
 
 def menu_camioes():
     while True:
-        print("--- Menu de Camiões ---")
+        print("\n--- Menu de Camiões ---")
         print("1. Adicionar Camião")
         print("2. Remover Camião")
         print("3. Listar Camiões")
         print("4. Voltar ao Menu Principal")
         op=input("Escolha uma opção: ")
         if op=="1":
-            matricula=input("Insira a matricula do camião: ")
+            matricula=input("\nInsira a matricula do camião (xx-xx-xx): ")
+            if len(matricula)>8 or len(matricula)<0 or matricula[2]!="-" or matricula[5]!="-":
+                break
             modelo=input("Insira o modelo do camião: ")
             preco=float(input("Insira o preço do camião: "))
             print(adicionar_camiao(matricula,modelo,preco))
         elif op=="2":
-            matricula=input("Insira a matricula do camião a remover: ")
+            matricula=input("\nInsira a matricula do camião a remover: ")
             print(remover_camiao(matricula))
         elif op=="3":
-            print("Camioes no stand:")
+            print("\nCamioes no stand:")
             for detalhes in listar_camioes():
                 print("-"*15)
                 print(detalhes)

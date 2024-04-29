@@ -13,7 +13,7 @@ import camioes_stand,clientes,compras,vendas
 
 def main():
     while True:
-        print("-----Menu Principal-----")
+        print("\n-----Menu Principal-----")
         print("1. Gerir Camiões no Stand")
         print("2. Gerir Clientes")
         print("3. Gerir Compras")

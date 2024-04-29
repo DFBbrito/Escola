@@ -34,7 +34,7 @@ def listar_clientes():
 
 def menu_clientes():
     while True:
-        print("--- Menu de Clientes ---")
+        print("\n--- Menu de Clientes ---")
         print("1. Adicionar Cliente")
         print("2. Remover Cliente")
         print("3. Editar Cliente")
@@ -42,19 +42,19 @@ def menu_clientes():
         print("5. Voltar ao Menu Principal")
         op=input("Escolha uma opção: ")
         if op=="1":
-            nome=input("Insira o nome do cliente: ")
+            nome=input("\nInsira o nome do cliente: ")
             contacto=input("Insira o contacto do cliente: ")
             print(adicionar_cliente(nome,contacto))
         elif op=="2":
-            nome=input("Insira o nome do cliente a remover: ")
+            nome=input("\nInsira o nome do cliente a remover: ")
             print(remover_cliente(nome))
         elif op=="3":
-            nome=input("Insira o nome do cliente a editar: ")
+            nome=input("\nInsira o nome do cliente a editar: ")
             novo_nome=input("Novo nome (deixe vazio para não alterar): ")
             novo_contacto=input("Novo contacto (deixe vazio para não alterar): ")
             print(editar_cliente(nome,novo_nome,novo_contacto))
         elif op=="4":
-            print("Clientes:")
+            print("\nClientes:")
             for detalhes in listar_clientes():
                 print("-"*15)
                 print(detalhes)
