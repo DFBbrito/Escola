@@ -1,6 +1,6 @@
 #Daniel Brito
 """
-Trabalho m06 
+Trabalho m06
 ----------------
 um programa para ajudar a gerir um stand de camioes de uma empresa
 Requisitos:
