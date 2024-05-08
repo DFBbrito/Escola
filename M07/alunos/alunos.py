@@ -2,7 +2,7 @@
 Programa para guardar dados de uma lista com vários alunos em um ficheiro de texto
 Neste projeto os dados estão todos na lista durante a execução do programa
 """
-import utils
+import utils,os
 
 #Lista dos alunos
 alunos = []
@@ -23,13 +23,13 @@ def criar_aluno():
         "morada":morada,
         "email":email,
         "idade":idade
-    }
+        }
+    return novo_aluno
 
 def listar():
     """Função para listar os alunos da lista"""
     for aluno in alunos:
         print(aluno)
-
 
 def adicionar():
     """Função para adicionar um aluno à lista"""
@@ -48,17 +48,52 @@ def guardar():
 
 def ler():
     """Função para ler os alunos do ficheiro para a lista"""
-    pass
+    if os.path.exists(nome_ficheiro)==False:
+        return
+    with(open(nome_ficheiro,"r",encoding="utf-8")) as ficheiro:
+        n_alunos=ficheiro.readline()
+        for linha_aluno in range(int(n_alunos)):
+            aluno=ficheiro.readline().split(",")
+            novo_aluno={
+                "nome":aluno[0],
+                "morada":aluno[1],
+                "email":aluno[2],
+                "idade":int(aluno[3])
+            }
+            alunos.append(novo_aluno)
+    print(f"Foram lidos do ficheiro {len(alunos)} alunos.")
+
+def apagar():
+    """Função para apagar um aluno da lista"""
+    nome=utils.le_texto("Nome do aluno:")
+    for aluno in alunos:
+        if nome==aluno['nome']:
+            alunos.remove(aluno)
+            print(f"O aluno {nome} foi removido com sucesso")
+            break
+
+def pesquisar():
+    """Função para pesquisar um aluno na lista"""
+    nome=utils.le_texto("Nome do aluno:")
+    for aluno in alunos:
+        if nome==aluno['nome']:
+            print(aluno)
 
 def main():
+    ler()
     while True:
-        op=utils.menu("Ficheiros Texto",["Adicionar","Listar","Terminar"])
+        op=utils.menu("Ficheiros Texto",["Adicionar","Listar","Apagar","Pesquisar","Terminar"])
         if op==1:
             adicionar()
         if op==2:
             listar()
         if op==3:
+            apagar()
+        if op==4:
+            pesquisar()
+        if op==5:
             break
+    guardar()
 
 if __name__=="__main__":
     main()
