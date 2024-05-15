@@ -11,9 +11,9 @@ alunos = []
 nome_ficheiro = "alunos.txt"
 
 def criar_aluno():
-    """Função para ler os seguintes dados:
-    Nome, morada, email e idade de um aluno
-    Devolve um dicionário com os dados"""
+    """-Função para ler os seguintes dados:
+        -Nome, morada, email e idade de um aluno
+        -Devolve um dicionário com os dados"""
     nome=utils.le_texto("Nome do aluno:")
     morada=utils.le_texto("Morada do aluno:")
     email=utils.le_email("Email do aluno:")

@@ -22,7 +22,7 @@ def criar_aluno():
                 "idade":idade}
     return novo_aluno
 
-def listar():
+def listar():       
     """Função para listar os alunos do ficheiro"""
     if ficheiro_existe()==False:
         return
