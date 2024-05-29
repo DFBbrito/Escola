@@ -41,7 +41,26 @@ def adicionar_avaria():
         return
     print("Dados foram guardados com sucesso.")
 
-
+def listar_avarias():
+    if os.path.exists(FICHEIRO_AVARIAS)==False:
+        print("Ainda não tem avarias.")
+        return
+    with open(FICHEIRO_AVARIAS,"rb") as f_avarias:
+        while True:
+            try:
+                avaria=pickle.load(f_avarias)
+                #procurar o veiculo ao ficheiro dos veiculos
+                with open(NOME_FICHEIRO,"rb") as f_veiculos:
+                    while True:
+                        try:
+                            carro=pickle.load(f_veiculos)
+                            if carro['matricula']==avaria['matricula']:
+                                break
+                        except EOFError:
+                            break   
+                print(f"{avaria['matricula']} \t {avaria['data']} \t {avaria['descriçao']} \t {avaria['custo']} \t {carro['marca']} \t {carro['modelo']} \t {carro['ano']}")
+            except EOFError:
+                break
 
 def adicionar():
     matricula=input("Matricula:")
@@ -144,7 +163,7 @@ def extra_contar_marcas():
 
 def main():
     while True:
-        op=int(input("1.Adicionar\n2.Listar\n3.Pesquisar\n4.Remover\n5.Mais de 10 anos\n6.Marca com mais veículos\n7.Terminar"))
+        op=int(input("1.Adicionar\n2.Listar\n3.Pesquisar\n4.Remover\n5.Mais de 10 anos\n6.Marca com mais veículos\n7.Adicionar avaria\n8.Listar avarias\n9.Terminar"))
         if op==7:
             break
         if op==1:
@@ -159,6 +178,12 @@ def main():
             extra_mais_10_anos()
         if op==6:
             extra_contar_marcas()
+        if op==7:
+            adicionar_avaria()
+        if op==8:
+            listar_avarias()
+        if op==9:
+            break
 
 if __name__=="__main__":
     main()

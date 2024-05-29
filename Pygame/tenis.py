@@ -1,87 +1,97 @@
 import pygame
+import sys
+import random
 
-pygame.init()
+# Definição de constantes
+WIDTH, HEIGHT = 800, 600
+TITLE = "Tenis"
+VELOCIDADE_BOLA = 6              # Velocidade da bola
+FUNDO = (0, 0, 75)
 
-#Janela do jogo
-width=800
-height=600
-title="Tenis"
-window=pygame.display.set_mode((width,height))
-pygame.display.set_caption(title)
+# Definição de cores
+BRANCO = (255, 255, 255)
 
-clock=pygame.time.Clock()
+# Classe para representar a raquete controlada pela IA
+class IA(pygame.sprite.Sprite):
+    def __init__(self, imagem, posicao, velocidade):
+        super().__init__()
+        self.image = pygame.image.load(imagem)
+        self.rect = self.image.get_rect(topleft=posicao)
+        self.velocidade = velocidade
+        self.pontuacao = 0
 
-VELOCIDADE_GERAL=2
-FUNDO=0,0,75
+    def move(self, ball):
+        # Movimento da raquete baseado na posição da bola
+        if self.rect.centery < ball.rect.centery:
+            self.rect.y += self.velocidade
+            if self.rect.bottom > HEIGHT:
+                self.rect.bottom = HEIGHT
+        elif self.rect.centery > ball.rect.centery:
+            self.rect.y -= self.velocidade
+            if self.rect.top < 0:
+                self.rect.top = 0
 
-#jogador
-ficheiro_player="imagens/raquete1.png"
-speedx_player=0
-speedy_player=1
-imagem_player=pygame.image.load(ficheiro_player)
-rect_player=imagem_player.get_rect()
-rect_player.topleft=(40,300)
+    def update(self, ball):
+        self.move(ball)
 
-#cpu
-ficheiro_cpu="imagens/raquete2.png"
-speedx_cpu=0
-speedy_cpu=VELOCIDADE_GERAL
-imagem_cpu=pygame.image. load(ficheiro_cpu)
-rect_cpu=imagem_cpu.get_rect()
-rect_cpu.topleft=(740,300)
+# Classe para representar a bola
+class Bola(pygame.sprite.Sprite):
+    def __init__(self, imagem, posicao):
+        super().__init__()
+        self.image = pygame.image.load(imagem)
+        self.rect = self.image.get_rect(center=posicao)
+        self.speedx = VELOCIDADE_BOLA
+        self.speedy = VELOCIDADE_BOLA
 
-#bola
-ficheiro_bola="imagens/bola.png"
-speedx_bola=VELOCIDADE_GERAL
-speedy_bola=VELOCIDADE_GERAL
-imagem_bola=pygame.image.load(ficheiro_bola)
-rect_bola=imagem_bola.get_rect()
-rect_bola.topleft=(400,300)
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+        if self.rect.top <= 0 or self.rect.bottom >= HEIGHT:
+            self.speedy *= -1
 
-run=True
-while run:
-    #Logica do jogo
-    #Player
-    rect_player=rect_player.move(speedx_player,speedy_player)
-    #bola
-    rect_bola=rect_bola.move(speedx_bola,speedy_bola)
-    #detetar colisoes
-    #bola no fundo e topo do ecrã
-    if rect_bola.top<=0 or rect_bola.top+rect_bola.height>height:
-        speedy_bola=speedy_bola*-1
-    if rect_bola.colliderect(rect_player) or rect_bola.colliderect(rect_cpu):
-        speedx_bola=speedx_bola*-1
+# Função principal do jogo
+def main():
+    pygame.init()
+    window = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption(TITLE)
+    clock = pygame.time.Clock()
 
-    #movimento cpu
-    if rect_bola.top<rect_cpu.top:
-        speedy_cpu=-VELOCIDADE_GERAL
-    if rect_bola.top>rect_cpu.top:
-        speedy_cpu=VELOCIDADE_GERAL
-    rect_cpu=rect_cpu.move(speedx_cpu,speedy_cpu)
+    # Criar objetos do jogo
+    ia_player = IA("imagens/raquete1.png", (40, 300), 6)
+    ia_cpu = IA("imagens/raquete2.png", (740, 300), 6)
+    bola = Bola("imagens/bola.png", (400, 300))
 
-    #desenhar
-    window.fill(FUNDO)
+    # Loop principal do jogo
+    run = True
+    while run:
+        # Eventos do pygame
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    run = False
 
-    #jogador
-    window.blit(imagem_player,rect_player)
-    #cpu
-    window.blit(imagem_cpu,rect_cpu)
-    #bola
-    window.blit(imagem_bola,rect_bola)
-    
-    #atualiza
-    pygame.display.flip()
-    clock.tick(60)
-    #ler os inputs 
-    for event in pygame.event.get():
-        if event.type==pygame.KEYDOWN:
-            if event.key==pygame.K_UP:
-                speedy_player=-VELOCIDADE_GERAL
-            if event.key==pygame.K_DOWN:
-                speedy_player=VELOCIDADE_GERAL
-            if event.key==pygame.K_ESCAPE:
-                pygame.quit()
-                run=False
-        if event.type==pygame.QUIT:
-            pygame.quit()
-            run=False
+        # Atualizar objetos do jogo
+        bola.update()
+        ia_player.update(bola)
+        ia_cpu.update(bola)
+
+        # Detectar colisão entre a bola e as raquetes
+        if bola.rect.colliderect(ia_player.rect) or bola.rect.colliderect(ia_cpu.rect):
+            bola.speedx *= -1
+
+        # Atualizar a tela
+        window.fill(FUNDO)
+        window.blit(ia_player.image, ia_player.rect)
+        window.blit(ia_cpu.image, ia_cpu.rect)
+        window.blit(bola.image, bola.rect)
+
+        pygame.display.flip()
+        clock.tick(60)
+
+    pygame.quit()
+    sys.exit()
+
+if __name__ == "__main__":
+    main()
